@@ -1,0 +1,41 @@
+{
+  "proyecto": "ReciClass",
+  "modelo_seleccionado": "SVM",
+  "resultados_validacion": {
+    "accuracy": {
+      "SVM": 0.5904628330995793,
+      "Random Forest": 0.5904628330995793,
+      "Extra Trees": 0.49228611500701264
+    },
+    "precision_macro": {
+      "SVM": 0.6487138571836714,
+      "Random Forest": 0.7360436414805758,
+      "Extra Trees": 0.7116894661593544
+    },
+    "recall_macro": {
+      "SVM": 0.5670181904450848,
+      "Random Forest": 0.542011427230324,
+      "Extra Trees": 0.43786192227121773
+    },
+    "f1_macro": {
+      "SVM": 0.581560222751011,
+      "Random Forest": 0.5456096547435527,
+      "Extra Trees": 0.45341282994941934
+    }
+  },
+  "accuracy_prueba": 0.5722300140252454,
+  "f1_macro_prueba": 0.5501399909108601,
+  "categorias": [
+    "Cardboard",
+    "Food Organics",
+    "Glass",
+    "Metal",
+    "Miscellaneous Trash",
+    "Paper",
+    "Plastic",
+    "Textile Trash",
+    "Vegetation"
+  ],
+  "scikit_learn": "1.6.1",
+  "tamano_mb": 143.19
+}

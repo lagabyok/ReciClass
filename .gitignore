@@ -1,0 +1,8 @@
+.venv/
+**/.venv/
+**/__pycache__/
+**/*.py[cod]
+**/.env
+**/.DS_Store
+Imag_para_probar/
+**/modelo.joblib
