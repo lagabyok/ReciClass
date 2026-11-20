@@ -10,6 +10,7 @@ from pathlib import Path
 import joblib
 import numpy as np
 from fastapi import FastAPI, HTTPException
+from fastapi.staticfiles import StaticFiles
 from fastapi.middleware.cors import CORSMiddleware
 from PIL import Image, UnidentifiedImageError
 from pydantic import BaseModel, Field
@@ -18,6 +19,7 @@ from feature_extractor import extraer_caracteristicas_desde_bytes
 
 BASE_DIR = Path(__file__).resolve().parents[1]
 MODEL_PATH = BASE_DIR / "modelo" / "modelo.joblib"
+FRONTEND_DIR = BASE_DIR / "frontend"
 
 MAX_IMAGE_BYTES = 10 * 1024 * 1024  # 10 MB
 ALLOWED_FORMATS = {"JPEG", "PNG", "WEBP"}
@@ -72,9 +74,7 @@ app.add_middleware(
 )
 
 
-@app.get("/")
-def inicio():
-    return {"proyecto": "ReciClass", "documentacion": "/docs"}
+
 
 
 @app.get("/health")
@@ -145,3 +145,11 @@ def predecir(request: PredictionRequest):
         }
     except Exception as exc:
         raise HTTPException(status_code=500, detail=f"Error al realizar la predicción: {exc}")
+
+
+# Servir el frontend desde la raíz de la aplicación.
+app.mount(
+    "/",
+    StaticFiles(directory=FRONTEND_DIR, html=True),
+    name="frontend"
+)

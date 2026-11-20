@@ -1,6 +1,6 @@
-// En desarrollo, la API corre localmente.
+﻿// En desarrollo, la API corre localmente.
 // Cuando se publique, reemplazar por la URL HTTPS del backend.
-const API_URL = "http://127.0.0.1:8000";
+const API_URL = "";
 
 const imageInput = document.getElementById("imageInput");
 const fileName = document.getElementById("fileName");
@@ -26,13 +26,13 @@ imageInput.addEventListener("change", () => {
 
   const allowed = ["image/jpeg", "image/png", "image/webp"];
   if (!allowed.includes(file.type)) {
-    showError("Formato no válido. Seleccioná JPG, PNG o WEBP.");
+    showError("Formato no vÃ¡lido. SeleccionÃ¡ JPG, PNG o WEBP.");
     imageInput.value = "";
     predictButton.disabled = true;
     return;
   }
   if (file.size > 10 * 1024 * 1024) {
-    showError("La imagen supera el límite de 10 MB.");
+    showError("La imagen supera el lÃ­mite de 10 MB.");
     imageInput.value = "";
     predictButton.disabled = true;
     return;
@@ -69,20 +69,20 @@ predictButton.addEventListener("click", async () => {
     if (!response.ok) {
       const detail = typeof data.detail === "string"
         ? data.detail
-        : `La API respondió con el estado ${response.status}.`;
+        : `La API respondiÃ³ con el estado ${response.status}.`;
       throw new Error(detail);
     }
 
     const traducciones = {
-      "Cardboard": "Cartón",
-      "Food Organics": "Residuos orgánicos",
+      "Cardboard": "CartÃ³n",
+      "Food Organics": "Residuos orgÃ¡nicos",
       "Glass": "Vidrio",
       "Metal": "Metal",
       "Miscellaneous Trash": "Residuos varios",
       "Paper": "Papel",
-      "Plastic": "Plástico",
+      "Plastic": "PlÃ¡stico",
       "Textile Trash": "Residuos textiles",
-      "Vegetation": "Vegetación"
+      "Vegetation": "VegetaciÃ³n"
     };
 
     document.getElementById("prediction").textContent =
@@ -122,11 +122,11 @@ predictButton.addEventListener("click", async () => {
       });
 
     result.hidden = false;
-    statusText.textContent = "Análisis completado.";
+    statusText.textContent = "AnÃ¡lisis completado.";
   } catch (error) {
     showError(
       error.message.includes("Failed to fetch")
-        ? "No se pudo conectar con la API. Verificá que FastAPI esté ejecutándose y que API_URL sea correcto."
+        ? "No se pudo conectar con la API. VerificÃ¡ que FastAPI estÃ© ejecutÃ¡ndose y que API_URL sea correcto."
         : error.message
     );
   } finally {
@@ -151,3 +151,4 @@ function showError(message) {
   statusText.textContent = message;
   statusText.className = "status error";
 }
+
